@@ -11,6 +11,7 @@ if [ ! -f /.mysql_set ]; then
 	echo "DROP DATABASE test;"|mysql -sN
 	echo "update mysql.user set host='%',password=PASSWORD('${PASS}') where host='127.0.0.1';"|mysql -sN
 	echo "delete from mysql.user where host!='%';"|mysql -sN
+	echo "TRUNCATE mysql.db;"|mysql -sN
 	
 	if [ "${MYSQL_USER}" != "**None**" ] && [ "${MYSQL_PASSWORD}" != "**None**" ]; then
 		echo "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"|mysql -sN
